@@ -5,6 +5,7 @@ import wikipedia
 import webbrowser
 import os 
 import smtplib
+import pywhatkit
 
 engine=pyttsx3.init('sapi5')
 voices=engine.getProperty('voices')
@@ -18,7 +19,7 @@ def wishMe():
     if hour>=0 and hour<12:
         speak("Good Morning!")
     elif hour>=12 and hour<18:
-        speak("Good Afternoon!")
+        speak("Good Afternoon!")    
     else:
         speak("Good Evening!")
     speak("I am Jarvis.Please tell me how may I help you") 
@@ -44,7 +45,7 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('sonuhyd0@gmail.com','awwmutmhjftfkrzh')
+    server.login('sonuhyd0@gmail.com','ikalnjlxscgnypnz')
     server.sendmail('sonuhyd0@gmail.com', to, content)
     server.close()
     
@@ -75,10 +76,14 @@ if __name__=="__main__":
         elif 'the time' in query:
             strTime=datetime.datetime.now().strftime("%H:%M:%S")  
             speak(f"Sir,the time is {strTime}") 
+        elif 'play' in query and 'on youtube' in query:
+             song = query.replace('play', '').replace('on youtube', '')
+             speak(f"Playing {song} on YouTube")
+             pywhatkit.playonyt(song)    
         elif 'open vs code' in query:  
             codePath="C:\\Users\\sarfaraz ahmed\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe" 
-            os.startfile(codePath)   
-        elif 'email to harry' in query:
+            os.startfile(codePath)        
+        elif 'email to sonu' in query:
             try:
                 speak("What should I say?")
                 content = takeCommand()
@@ -87,4 +92,4 @@ if __name__=="__main__":
                 speak("Email has been sent!")
             except Exception as e:
                 print(e)
-                speak("Sorry my friend Ahamad. I am not able to send this email") 
+                speak("Sorry my friend. I am not able to send this email") 
