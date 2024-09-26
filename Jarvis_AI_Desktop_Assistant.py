@@ -93,3 +93,10 @@ if __name__=="__main__":
             except Exception as e:
                 print(e)
                 speak("Sorry my friend. I am not able to send this email") 
+        elif 'open email' in query:
+            speak("Opening your email")
+            webbrowser.open("https://mail.google.com")
+        elif 'power off' in query:
+            speak("see you soon friend")
+            os.system("shutdown /s /t 1")    
+                
